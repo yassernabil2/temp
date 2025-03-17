@@ -1,0 +1,26 @@
+package com.example.basketballgame
+
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+
+class CounterViewModel : ViewModel() {
+
+    private val _counterOne = MutableLiveData<Int>(0)
+    val counterOne: LiveData<Int> = _counterOne
+
+    private val _counterTwo = MutableLiveData<Int>(0)
+    val counterTwo: LiveData<Int> = _counterTwo
+
+    fun incrementCounter(counterType: String, incrementValue: Int) {
+        when (counterType) {
+            "red" -> _counterOne.value = _counterOne.value?.plus(incrementValue)
+            "blue" -> _counterTwo.value = _counterTwo.value?.plus(incrementValue)
+        }
+    }
+
+    fun reset() {
+        _counterOne.value = 0
+        _counterTwo.value = 0
+    }
+}
