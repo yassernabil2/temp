@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/basketball1"
+    android:padding="24dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context=".MainActivity">
+
+        <Button
+            android:id="@+id/end_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#D50000"
+            android:text="end game"
+            android:textAllCaps="true"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/reset_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#D50000"
+            android:text="reset"
+            android:textAllCaps="true"
+            app:layout_constraintBottom_toBottomOf="@+id/end_btn"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/end_btn" />
+
+        <TextView
+            android:id="@+id/team_a"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="64dp"
+            android:layout_marginTop="56dp"
+            android:fontFamily="sans-serif-medium"
+            android:text="Team A"
+            android:textColor="#FF0000"
+            android:textSize="32sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/end_btn" />
+
+        <TextView
+            android:id="@+id/team_b"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-medium"
+            android:text="Team B"
+            android:textColor="#0026FF"
+            android:textSize="32sp"
+            app:layout_constraintBottom_toBottomOf="@+id/team_a"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.187"
+            app:layout_constraintStart_toEndOf="@+id/team_a"
+            app:layout_constraintTop_toTopOf="@+id/team_a"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/score_one"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="104dp"
+            android:fontFamily="cursive"
+            android:textColor="#FF0000"
+            android:textSize="32sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/team_a"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/team_a"
+            tools:text="09" />
+
+        <TextView
+            android:id="@+id/score_two"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="cursive"
+            android:textColor="#0000FF"
+            android:textSize="32sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/score_one"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/team_b"
+            app:layout_constraintTop_toTopOf="@+id/score_one"
+            app:layout_constraintVertical_bias="0.0"
+            tools:text="09" />
+
+        <TextView
+            android:id="@+id/animate_txt1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="68dp"
+            android:textColor="#FF0000"
+            android:textSize="28sp"
+            app:layout_constraintEnd_toEndOf="@+id/score_one"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/score_one"
+            app:layout_constraintTop_toBottomOf="@+id/score_one" />
+
+        <TextView
+            android:id="@+id/animate_txt2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#0000FF"
+            android:textSize="28sp"
+            app:layout_constraintBottom_toBottomOf="@+id/animate_txt1"
+            app:layout_constraintEnd_toEndOf="@+id/score_two"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/score_two"
+            app:layout_constraintTop_toTopOf="@+id/animate_txt1"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <Button
+            android:id="@+id/r_3_btn"
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="264dp"
+            android:text="+3 points"
+            android:textAllCaps="true"
+            app:layout_constraintEnd_toEndOf="@+id/team_a"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/team_a"
+            app:layout_constraintTop_toBottomOf="@+id/score_one" />
+
+        <Button
+            android:id="@+id/r_2_btn"
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:text="+2 points"
+            android:textAllCaps="true"
+            app:layout_constraintEnd_toEndOf="@+id/r_3_btn"
+            app:layout_constraintStart_toStartOf="@+id/r_3_btn"
+            app:layout_constraintTop_toBottomOf="@+id/r_3_btn" />
+
+        <Button
+            android:id="@+id/r_1_btn"
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="free throw"
+            android:textAllCaps="true"
+            app:layout_constraintEnd_toEndOf="@+id/r_2_btn"
+            app:layout_constraintStart_toStartOf="@+id/r_2_btn"
+            app:layout_constraintTop_toBottomOf="@+id/r_2_btn" />
+
+        <Button
+            android:id="@+id/b_3_btn"
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:text="+3 points"
+            android:textAllCaps="true"
+            app:layout_constraintBottom_toBottomOf="@+id/r_3_btn"
+            app:layout_constraintEnd_toEndOf="@+id/team_b"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/team_b"
+            app:layout_constraintTop_toTopOf="@+id/r_3_btn"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <Button
+            android:id="@+id/b_2_btn"
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:text="+2 points"
+            android:textAllCaps="true"
+            app:layout_constraintBottom_toBottomOf="@+id/r_2_btn"
+            app:layout_constraintEnd_toEndOf="@+id/b_3_btn"
+            app:layout_constraintStart_toStartOf="@+id/b_3_btn"
+            app:layout_constraintTop_toTopOf="@+id/r_2_btn" />
+
+        <Button
+            android:id="@+id/b_1_btn"
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:text="free throw"
+            android:textAllCaps="true"
+            app:layout_constraintBottom_toBottomOf="@+id/r_1_btn"
+            app:layout_constraintEnd_toEndOf="@+id/b_2_btn"
+            app:layout_constraintStart_toStartOf="@+id/b_2_btn"
+            app:layout_constraintTop_toTopOf="@+id/r_1_btn" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
