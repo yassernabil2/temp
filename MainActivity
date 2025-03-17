@@ -1,0 +1,98 @@
+package com.example.basketballgame
+
+import android.animation.AnimatorSet
+import android.animation.ObjectAnimator
+import android.os.Bundle
+import android.view.View
+import android.widget.Toast
+import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.ViewModelProvider
+import com.example.basketballgame.databinding.ActivityMainBinding
+
+class MainActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
+
+        val binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            insets
+        }
+
+        val viewModel = ViewModelProvider(this)[CounterViewModel::class.java]
+
+        viewModel.counterOne.observe(this) {
+            binding.scoreOne.text = it.toString()
+        }
+
+        viewModel.counterTwo.observe(this) {
+            binding.scoreTwo.text = it.toString()
+        }
+
+        val btns = mapOf(binding.r1Btn to {
+            viewModel.incrementCounter("red", 1)
+            scoreAnimation(binding, "A", 1)
+        }, binding.r2Btn to {
+            viewModel.incrementCounter("red", 2)
+            scoreAnimation(binding, "A", 2)
+        }, binding.r3Btn to {
+            viewModel.incrementCounter("red", 3)
+            scoreAnimation(binding, "A", 3)
+        }, binding.b1Btn to {
+            viewModel.incrementCounter("blue", 1)
+            scoreAnimation(binding, "B", 1)
+        }, binding.b2Btn to {
+            viewModel.incrementCounter("blue", 2)
+            scoreAnimation(binding, "B", 2)
+        }, binding.b3Btn to {
+            viewModel.incrementCounter("blue", 3)
+            scoreAnimation(binding, "B", 3)
+        },
+
+            binding.resetBtn to { viewModel.reset()
+                                Toast.makeText(this, "Game Reset", Toast.LENGTH_SHORT).show()},
+
+            binding.endBtn to {
+                if (viewModel.counterOne.value!! > viewModel.counterTwo.value!!) Toast.makeText(
+                    this,
+                    "Team A Won",
+                    Toast.LENGTH_SHORT
+                ).show()
+                else if (viewModel.counterOne.value!! < viewModel.counterTwo.value!!) Toast.makeText(
+                    this,
+                    "Team B Won",
+                    Toast.LENGTH_SHORT
+                ).show()
+                else Toast.makeText(this, "Draw", Toast.LENGTH_SHORT).show()
+            })
+
+        btns.forEach { (btn, action) ->
+            btn.setOnClickListener { action() }
+        }
+    }
+
+    fun scoreAnimation(binding: ActivityMainBinding, team: String, points: Int) {
+        val tvAnimation = if (team == "A") binding.animateTxt1 else binding.animateTxt2
+
+        tvAnimation.text = "+$points"
+        tvAnimation.visibility = View.VISIBLE
+
+        val fadInOut = ObjectAnimator.ofFloat(tvAnimation, View.ALPHA, 0f, 1f, 0f)
+        fadInOut.duration = 1000
+
+        val moveUp = ObjectAnimator.ofFloat(tvAnimation, View.TRANSLATION_Y, 0f, -100f)
+        moveUp.duration = 1000
+
+        AnimatorSet().apply {
+            playTogether(fadInOut, moveUp)
+            start()
+        }
+    }
+}
